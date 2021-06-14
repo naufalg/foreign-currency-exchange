@@ -4,7 +4,7 @@ const moneyInputStyle = makeStyles(() => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginTop: '20px',
+    margin: '20px 0',
   },
 }));
 

@@ -12,9 +12,9 @@ export const getCurrencyAction = (currencyArray) => async (dispatch) => {
     dispatch({
       type: GET_CURRENCY_REQUEST,
     });
-
+    // get currencies name
     const currenciesData = await getCurrency();
-
+    // filter fetched currencies name with selected provided currencies
     const filteredCurrencies = Object.keys(currenciesData.data)
       .filter((key) => currencyArray.includes(key))
       .reduce((obj, key) => {
@@ -24,8 +24,10 @@ export const getCurrencyAction = (currencyArray) => async (dispatch) => {
         };
       }, {});
 
+    // get currencies rate
     const ratesData = await getRate();
 
+    // filter fetched currencies rate with selected provided currencies
     const filteredRates = Object.keys(ratesData.data.rates)
       .filter((key) => currencyArray.includes(key))
       .reduce((obj, key) => {
@@ -35,6 +37,7 @@ export const getCurrencyAction = (currencyArray) => async (dispatch) => {
         };
       }, {});
 
+    // create new currencies object to combine all fetched data
     const mappedCurrencies = currencyArray.map((item, idx) => ({
       acronym: item,
       name: filteredCurrencies[item],

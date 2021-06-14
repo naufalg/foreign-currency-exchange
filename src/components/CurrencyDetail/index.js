@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Typography, List, Button } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { AppContext } from 'context/AppContext';
@@ -7,11 +7,11 @@ import { getCurrencyAction } from 'redux/actions/currency.action';
 import { roundNDecimal } from 'utils';
 
 import currencyDetailStyle from './currencyDetail.style';
-// import { getCurrency } from 'api/getCurrency';
 
 export default function CurrencyDetail() {
   const classes = currencyDetailStyle();
   const dispatch = useDispatch();
+  // datas from context
   const {
     currencies,
     showedCurrency,
@@ -19,10 +19,10 @@ export default function CurrencyDetail() {
     dropdownList,
     setDropdownList,
     moneyAmount,
-    selected,
     setSelected,
   } = useContext(AppContext);
 
+  // get currency state using redux' useSelector
   const currencyState = useSelector((state) => state.currency);
 
   const filteredShowed =
@@ -34,10 +34,12 @@ export default function CurrencyDetail() {
 
   useEffect(() => {
     if (!currencyState.data) {
+      // fetch currency data
       dispatch(getCurrencyAction(currencies));
     }
   }, []);
 
+  // remove button handler
   const removeHandler = (inputValue, removed) => {
     const removedItems = inputValue.filter((item) => {
       return item !== removed;
@@ -51,6 +53,7 @@ export default function CurrencyDetail() {
     <List>
       {currencyState.data
         ? filteredShowed.map((item1, idx1) => (
+            // map fetched datas with its respective data
             <div key={idx1} className={classes.root}>
               <div className={classes.left}>
                 <Typography className={classes.title}>
@@ -62,7 +65,9 @@ export default function CurrencyDetail() {
               </div>
               <div className={classes.right}>
                 <Typography className={classes.value}>
-                  {roundNDecimal(item1.rate * moneyAmount, 2)}
+                  {roundNDecimal(item1.rate * moneyAmount, 2).toLocaleString(
+                    'de-DE'
+                  )}
                 </Typography>
                 <Button
                   onClick={() => {
@@ -70,6 +75,7 @@ export default function CurrencyDetail() {
                   }}
                   variant='outlined'
                   color='secondary'
+                  size='small'
                 >
                   Remove
                 </Button>
@@ -77,6 +83,7 @@ export default function CurrencyDetail() {
             </div>
           ))
         : [...Array(2)].map((e, idx) => (
+            // show skeleton while data being loaded
             <div className={classes.skeleton}>
               <Skeleton height={40} key={idx} variant='text' animation='wave' />
             </div>

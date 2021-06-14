@@ -7,17 +7,24 @@ const currencyInputStyle = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: '10px',
-    // width: '50%',
   },
   formControl: {
-    // margin: theme.spacing(1),
-    minWidth: 120,
-    width: '70%',
+    minWidth: '120px',
+    maxWidth: '500px',
+    width: '80%',
+    [theme.breakpoints.up('sm')]: {
+      width: '50%',
+    },
   },
   selectEmpty: {
+    minWidth: '100px',
+    maxWidth: '500px',
     width: '60%',
     alignItems: 'center',
     justifyContent: 'center',
+    [theme.breakpoints.up('sm')]: {
+      width: '70%',
+    },
   },
 }));
 

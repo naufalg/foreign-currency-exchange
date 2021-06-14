@@ -1,18 +1,11 @@
-import React, { useState, useContext } from 'react';
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  MenuItem,
-  Select,
-} from '@material-ui/core';
+import React, { useContext } from 'react';
+import { Button, FormControl, MenuItem, Select } from '@material-ui/core';
 import currencyInputStyle from './currencyInput.style';
 import { AppContext } from 'context/AppContext';
 
 export default function CurrencyInput() {
   const classes = currencyInputStyle();
   const {
-    currencies,
     dropdownList,
     setDropdownList,
     showedCurrency,
@@ -34,10 +27,7 @@ export default function CurrencyInput() {
     setSelected(dropdownList[1]);
   };
 
-  console.log(selected);
-  console.log('dropdownList', dropdownList);
-  console.log(showedCurrency);
-
+  // render nothing if no longer available provided currencies to compare
   if (dropdownList.length === 0) {
     return null;
   }

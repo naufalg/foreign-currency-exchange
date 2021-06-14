@@ -11,9 +11,7 @@ export const AppProvider = ({ children }) => {
   const [showedCurrency, setShowedCurrency] = useState(['USD', 'SGD']);
   // add currency option(s)
   const [dropdownList, setDropdownList] = useState(
-    currencies.filter(
-      (result) => showedCurrency.indexOf(result) < 0 && result !== 'IDR'
-    )
+    currencies.filter((result) => showedCurrency.indexOf(result) < 0)
   );
   // selected add currency
   const [selected, setSelected] = useState(dropdownList[0]);

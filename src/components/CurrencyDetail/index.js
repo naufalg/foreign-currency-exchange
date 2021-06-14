@@ -37,6 +37,7 @@ export default function CurrencyDetail() {
       // fetch currency data
       dispatch(getCurrencyAction(currencies));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // remove button handler
@@ -82,10 +83,10 @@ export default function CurrencyDetail() {
               </div>
             </div>
           ))
-        : [...Array(2)].map((e, idx) => (
+        : [...Array(2)].map((e, idx2) => (
             // show skeleton while data being loaded
             <div className={classes.skeleton}>
-              <Skeleton height={40} key={idx} variant='text' animation='wave' />
+              <Skeleton height={40} key={idx2} variant='text' animation='wave' />
             </div>
           ))}
     </List>

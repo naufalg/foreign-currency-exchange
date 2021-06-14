@@ -38,7 +38,7 @@ export const getCurrencyAction = (currencyArray) => async (dispatch) => {
       }, {});
 
     // create new currencies object to combine all fetched data
-    const mappedCurrencies = currencyArray.map((item, idx) => ({
+    const mappedCurrencies = currencyArray.map((item) => ({
       acronym: item,
       name: filteredCurrencies[item],
       rate: filteredRates[item],

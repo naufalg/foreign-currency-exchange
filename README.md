@@ -6,7 +6,7 @@
 <p align="center">
   <h3 align="center">Foreign Currency Exchanger</h3>
   <p align="center">
-    Foreign Currency Exchanger Web Application React Based
+    React-based Foreign Currency Exchanger Web Application 
     <br />
     <br />
   </p>
